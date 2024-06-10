@@ -8,7 +8,7 @@ def fetch_mysql_data(host, mysql_user, mysql_password, mysql_database, table_nam
     Args:
     - host: MySQL host
     - mysql_user: MySQL username
-    - mysql_password: MySQL password
+    - mysql_password: MySQcdL password
     - mysql_database: MySQL database name
     - table_name: Name of the table to fetch data from
 

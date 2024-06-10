@@ -39,7 +39,7 @@ def get_mysql_table(host, user, password, database, table_name):
 # Example usage
 user = 'admin'
 password = 'yourpassword'
-host = "my-mysql-db.c3i2koy6e5h5.us-east-1.rds.amazonaws.com"
+host = "my-mysql-db.chaiuouywg8z.us-east-1.rds.amazonaws.com"
 database = 'mydatabase'
 #ame = "employees"
 table_name = "employees"

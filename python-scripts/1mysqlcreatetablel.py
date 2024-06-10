@@ -3,7 +3,7 @@ import boto3
 from botocore.exceptions import NoCredentialsError, PartialCredentialsError
 
 # Define your database connection details
-db_endpoint = "my-mysql-db.c3i2koy6e5h5.us-east-1.rds.amazonaws.com"
+db_endpoint = "my-mysql-db.chaiuouywg8z.us-east-1.rds.amazonaws.com"
 db_port = 3306
 db_name = "mydatabase"
 db_username = "admin"
