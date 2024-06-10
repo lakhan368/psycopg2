@@ -21,27 +21,38 @@ def lambda_handler(event, context):
         
         cursor = connection.cursor()
         
-        # SQL query to be executed
-        query = "SELECT * FROM your_table_name LIMIT 10;"  # Replace 'your_table_name' with your actual table name
+        # SQL query to fetch the PostgreSQL version
+        version_query = "SELECT version();"
         
-        # Execute the query
-        cursor.execute(query)
+        # Execute the version query
+        cursor.execute(version_query)
+        version = cursor.fetchone()[0]
         
-        # Fetch all results
-        results = cursor.fetchall()
+        # SQL query to list all tables in the 'public' schema
+        tables_query = """
+        SELECT table_name 
+        FROM information_schema.tables 
+        WHERE table_schema = 'public';
+        """
         
-        # Convert the results to a list of dictionaries for easier JSON serialization
-        columns = [desc[0] for desc in cursor.description]
-        data = [dict(zip(columns, row)) for row in results]
+        # Execute the tables query
+        cursor.execute(tables_query)
+        tables = cursor.fetchall()
+        
+        # Extract table names from the result
+        table_names = [row[0] for row in tables]
         
         # Close the cursor and connection
         cursor.close()
         connection.close()
         
-        # Return the results as JSON
+        # Return the PostgreSQL version and table names as JSON
         return {
             "statusCode": 200,
-            "body": json.dumps(data)
+            "body": json.dumps({
+                "version": version,
+                "tables": table_names
+            })
         }
         
     except Exception as e:
